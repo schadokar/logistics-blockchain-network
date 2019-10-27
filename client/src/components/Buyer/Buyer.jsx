@@ -1,13 +1,14 @@
 import React, { Component } from "react";
-import { Table, Button } from "semantic-ui-react";
+import { Table, Button, Popup, Icon } from "semantic-ui-react";
 import axios from "axios";
-import { serverURL } from "../../config.json";
+import { serverURL, timeRaster } from "../../config.json";
 
 export default class Buyer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      shipmentList: []
+      shipmentList: [],
+      loading: false
     };
 
     this.buyerConsent = this.buyerConsent.bind(this);
@@ -37,6 +38,29 @@ export default class Buyer extends Component {
           .data.location;
         // console.log(sellerId, sellerLocation, buyerId, buyerLocation);
 
+        // check if shipment temp is greater than 20 C for more than 30 minutes
+        // taking time raster as 10 minutes
+        const time = 30 / timeRaster - 1;
+
+        let tempReadings = shipment.temperatureReadings;
+        let breachStatus = "No";
+        for (let i = 0; i < tempReadings.length - time; i++) {
+          let breach = true;
+          // take the 30 min interval readings
+          let readings = tempReadings.slice(i, i + time);
+          for (let temp of readings) {
+            if (temp < 20) {
+              breach = false;
+              break;
+            }
+          }
+
+          if (breach) {
+            breachStatus = "Yes";
+            break;
+          }
+        }
+
         return {
           shipmentId: shipment.shipmentId,
           sellerLocation: sellerLocation,
@@ -45,7 +69,8 @@ export default class Buyer extends Component {
           status: shipment.status,
           buyerId: buyerId,
           buyerLocation: buyerLocation,
-          tempBreach: "No",
+          tempBreach: breachStatus,
+          readings: shipment.temperatureReadings.toString(),
           button: "Primary"
         };
       })
@@ -70,10 +95,17 @@ export default class Buyer extends Component {
           <Table.Cell>{shipment.status}</Table.Cell>
           <Table.Cell>{shipment.buyerId}</Table.Cell>
           <Table.Cell>{shipment.buyerLocation}</Table.Cell>
-          <Table.Cell>temp</Table.Cell>
+          <Table.Cell>
+            {shipment.tempBreach}{" "}
+            <Popup
+              content={shipment.readings}
+              trigger={<Icon name="info circle" />}
+            />
+          </Table.Cell>
           <Table.Cell>
             <Button.Group>
               <Button
+                loading={this.state.loading}
                 positive
                 disabled={b}
                 onClick={() => this.buyerConsent(index, "Accepted_by_buyer")}
@@ -82,6 +114,7 @@ export default class Buyer extends Component {
               </Button>
               <Button.Or />
               <Button
+                loading={this.state.loading}
                 negative
                 disabled={b}
                 onClick={() => this.buyerConsent(index, "Rejected_by_buyer")}
@@ -98,7 +131,9 @@ export default class Buyer extends Component {
   buyerConsent(index, consent) {
     const shipment = this.state.shipmentList[index];
     // console.log(index, this.state.shipmentList[index]);
-
+    this.setState({
+      loading: true
+    });
     axios
       .post(`${serverURL}/transferOwnership`, {
         shipment: `${shipment.shipmentId}`,
@@ -108,6 +143,9 @@ export default class Buyer extends Component {
       .then(res => {
         if (res.status === 200) {
           console.log("Success");
+          this.setState({
+            loading: false
+          });
           this.getShiments();
         }
       });
