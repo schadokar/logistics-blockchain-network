@@ -1,12 +1,15 @@
 import React from "react";
 import "./App.css";
 import { Container } from "semantic-ui-react";
+import Header from "./components/Header/index";
+import Sidebar from "./components/Sidebar/index";
 
 function App() {
   return (
-    <div>
-      <Container>Import components here</Container>
-    </div>
+    <Container>
+      <Header></Header>
+      <Sidebar></Sidebar>
+    </Container>
   );
 }
 

@@ -1,5 +1,5 @@
 body {
-  width: 800px;
+  width: 100%;
   margin: 0 auto;
   margin-top: 50px;
 
@@ -8,6 +8,7 @@ body {
 
 .header {
   text-align: center;
+  padding: 10px;
 }
 
 .row {
