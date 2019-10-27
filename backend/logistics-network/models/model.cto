@@ -1,0 +1,55 @@
+namespace org.logistics.network
+
+enum Status {
+	o With_Seller
+    o In_transit
+    o Delivered
+    o Accepted_by_buyer
+    o Rejected_by_buyer
+}
+
+/* Abstracting all the participants as Actor since all are having same fields*/
+
+abstract participant Actor {
+  o String location
+}
+
+participant Logistics identified by id extends Actor {
+	o String id	
+}	
+
+participant Seller identified by id extends Actor {
+	o String id	
+}	
+
+participant Buyer identified by id extends Actor {
+	o String id		
+}	
+
+/* Shipment Asset */
+asset Shipment identified by shipmentId {
+	o String shipmentId
+    --> Seller seller
+    --> Logistics logistics
+    --> Actor owner
+    --> Buyer buyer
+    o Double[] temperatureReadings
+    o Status status default="With_Seller"
+} 
+
+/* Transactions | Transfer Ownership. This one transaction can handle all the business requirements.*/
+
+transaction TransferOwnership {
+	--> Shipment shipment
+    --> Actor to
+    o Status status
+}
+
+/*Temperature Reading update*/
+transaction ShipmentTempUpdate {
+	--> Shipment shipment
+    o Double temperature
+}
+  
+/* Setup Demo */
+ transaction SetupDemo {}

@@ -1,0 +1,20 @@
+query getAllShipmentByStatus {
+  description: "Get all the Shipments by Status: With_Seller, In_transit, Delivered, Accepted_by_buyer, Rejected_by_buyer"
+  statement:
+  	SELECT org.logistics.network.Shipment
+      WHERE (status == _$status)
+}
+
+query getShipmentsForLogistics {
+  description: "Get the Shipments for Logistics by Status:In_transit, Delivered"
+  statement:
+  	SELECT org.logistics.network.Shipment
+      WHERE (status == "In_transit" OR status == "Delivered")
+}
+
+query getShipmentsForBuyer {
+  description: "Get the Shipments for Buyer by Status: Delivered, Accepted_by_buyer, Rejected_by_buyer"
+  statement:
+  	SELECT org.logistics.network.Shipment
+      WHERE (status == "Delivered" OR status == "Accepted_by_buyer" OR status == "Rejected_by_buyer")
+}
