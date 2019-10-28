@@ -73,9 +73,18 @@ composer-playground
 ```
 
 Open the composer playground in the browser.
+
+Composer playground is started locally on the vm.
+
+To access the playground on your web browser, instead of `http://localhost:8080`
+Use `ipaddress_of_vm:8080`.
+
 Deploy the `logistics-network.bna` in My Business Network not in the Web Browser.
+
 Note down the admin.
+
 Scroll down and select ID and Secret.
+
 Username: admin
 Password: adminpw
 
@@ -90,7 +99,8 @@ composer-rest-server
 
 enter the admin card: admin@logistics-network
 `if you didn't note down it, open composer playground dashboard. The heading admin@something is the admin card name`
-enter No to everything except test explorer.
+
+enter "No" to everything except test explorer.
 
 Now your composer-rest-server started.
 
@@ -111,3 +121,49 @@ Run `npm install` inside the client folder.
 Run `npm run start`
 
 Open the application on `localhost:3000`.
+
+## Application Setup and Action Screenshot
+
+It is assumed that you started the fabric successfully.
+
+### Composer Playground
+
+<img src="images/playground-1.PNG"/>
+
+<img src="images/playground-2.PNG"/>
+
+<img src="images/playground-3.PNG"/>
+
+<img src="images/playground-4.PNG"/>
+
+<img src="images/playground-5.PNG"/>
+
+### Composer Rest Server
+
+<img src="images/composer-1.PNG"/>
+
+<img src="images/composer-2.PNG"/>
+
+<img src="images/composer-3.PNG"/>
+
+<img src="images/composer-4.PNG"/>
+
+### Application Demo
+
+<img src="images/application-1.PNG"/>
+
+<img src="images/application-2.PNG"/>
+
+<img src="images/application-3.PNG"/>
+
+<img src="images/application-4.PNG"/>
+
+<img src="images/application-5.PNG"/>
+
+<img src="images/application-6.PNG"/>
+
+<img src="images/application-7.PNG"/>
+
+<img src="images/application-8.PNG"/>
+
+<img src="images/application-9.PNG"/>
