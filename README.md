@@ -66,6 +66,9 @@ export FABRIC_VERSION=hlfv12
 ./createPeerAdminCard.sh
 ```
 
+> All the screenshots of the below steps are attached in the bottom of this section.   
+> Please refer them if you find any problem.  
+
 3. Start Composer Playground
 
 ```
@@ -85,24 +88,25 @@ Note down the admin.
 
 Scroll down and select ID and Secret.
 
-Username: admin
-Password: adminpw
+Username: `admin`  
+Password: `adminpw`  
 
-Now click Deploy
+Now click Deploy  
 
-4. Start Rest Server
+4. Start Rest Server  
    Open a new terminal
 
 ```
 composer-rest-server
 ```
 
-enter the admin card: admin@logistics-network
-`if you didn't note down it, open composer playground dashboard. The heading admin@something is the admin card name`
+enter the admin card: `admin@logistics-network`  
+
+> :warning: Note: if you didn't note down it, open composer playground dashboard. The heading `admin@something` is the admin card name
 
 enter "No" to everything except test explorer.
 
-Now your composer-rest-server started.
+Now your `composer-rest-server` started.
 
 ### Configure the Client (Frontend)
 
