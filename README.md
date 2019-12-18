@@ -10,7 +10,9 @@ This project is developed and tested on Linux 18.04 AWS t2.medium 40GB machine.
 curl -O https://hyperledger.github.io/composer/latest/prereqs-ubuntu.sh
 chmod u+x prereqs-ubuntu.sh
 ./prereqs-ubuntu.sh
-```
+```   
+
+#### Logout and Login back.
 
 ### Install Composer Components
 
