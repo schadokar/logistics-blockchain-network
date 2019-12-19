@@ -12,29 +12,29 @@ chmod u+x prereqs-ubuntu.sh
 ./prereqs-ubuntu.sh
 ```   
 
-#### Logout and Login back.
+#### :exclamation: Logout and Login back.
 
 ### Install Composer Components
 
-1. Essential CLI tools:
+#### 1. Essential CLI tools:
 
 ```
 npm install -g composer-cli@0.20
 ```
 
-2. Composer REST Server
+#### 2. Composer REST Server
 
 ```
 npm install -g composer-rest-server@0.20
 ```
 
-3. Install Composer Playground
+#### 3. Install Composer Playground
 
 ```
 npm install -g composer-playground@0.20
 ```
 
-4. Install Hyperledger Fabric
+#### 4. Install Hyperledger Fabric
 
 ```
 mkdir ~/fabric-dev-servers && cd ~/fabric-dev-servers
@@ -51,7 +51,7 @@ export FABRIC_VERSION=hlfv12
 
 ### Start the Network
 
-1. Clean the network if it was running before:
+#### 1. Clean the network if it was running before:
 
 ```
 cd ~/fabric-dev-servers
@@ -62,7 +62,7 @@ export FABRIC_VERSION=hlfv12
 ./startFabric.sh
 ```
 
-2. Create Peer Admin Card
+#### 2. Create Peer Admin Card
 
 ```
 ./createPeerAdminCard.sh
@@ -71,7 +71,7 @@ export FABRIC_VERSION=hlfv12
 > All the screenshots of the below steps are attached in the bottom of this section.   
 > Please refer them if you find any problem.  
 
-3. Start Composer Playground
+#### 3. Start Composer Playground
 
 ```
 composer-playground
@@ -86,16 +86,16 @@ Use `ipaddress_of_vm:8080`.
 
 Deploy the `logistics-network.bna` in My Business Network not in the Web Browser.
 
-Note down the admin.
+#### :clipboard: Note down the admin.
 
 Scroll down and select ID and Secret.
 
 Username: `admin`  
 Password: `adminpw`  
 
-Now click Deploy  
+Now click `Deploy`  
 
-4. Start Rest Server  
+#### 4. Start Rest Server  
    Open a new terminal
 
 ```
@@ -104,15 +104,15 @@ composer-rest-server
 
 enter the admin card: `admin@logistics-network`  
 
-> :warning: Note: if you didn't note down it, open composer playground dashboard. The heading `admin@something` is the admin card name
+#### > :grey_exclamation: Note: if you didn't note down it, open composer playground dashboard. The heading `admin@something` is the admin card name
 
 enter "No" to everything except test explorer.
 
-Now your `composer-rest-server` started.
+##### Now your `composer-rest-server` started. :tada:
 
 ### Configure the Client (Frontend)
 
-Open `config.json` in the `src` folder.
+Open `config.json` in the `src` folder :open_file_folder:.
 
 Change the `serverURL` to the server address where composer-rest-server is running.
 
@@ -128,7 +128,7 @@ Run `npm run start`
 
 Open the application on `localhost:3000`.
 
-## Application Setup and Action Screenshot
+## Application Setup and Action Screenshot :clapper:
 
 It is assumed that you started the fabric successfully.
 
